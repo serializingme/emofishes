@@ -5,7 +5,7 @@ Emofishes is a collection of proof of concepts that help improve, bypass or dete
 
 ### Cufish (Curious Fish)
 
-The environments used to perform behavioural analysis of malware need to be stealth, being able to avoid detection by malware is a must because it will spare the researcher or incident responder precious time in the analysis of the incident. Cufish aims to help with that, providing information about the execution environment that could be used pre-emptively to improve the sandbox and avoid detection by malware. You can [download](https://github.com/serializingme/cufish/dist/raw/master/cufish.exe) the compiled executable.
+The environments used to perform behavioural analysis of malware need to be stealth, being able to avoid detection by malware is a must because it will spare the researcher or incident responder precious time in the analysis of the incident. Cufish aims to help with that, providing information about the execution environment that could be used pre-emptively to improve the sandbox and avoid detection by malware. You can [download](https://github.com/serializingme/emofishes/raw/master/dist/cufish.exe) the compiled executable.
 
 ## Build it Yourself
 
