@@ -26,7 +26,7 @@
 #include "wmi.h"
 #include "fingerprint.h"
 
-int main(void)
+int main()
 {
 	unsigned short original_colors = 0;
 	IWbemServices *services = NULL;
@@ -40,25 +40,22 @@ int main(void)
 	printf("[*] Initializing socket ... ");
 	if (init_socket() != TRUE) {
 		print_failed();
-	}
-	else {
+	} else {
 		print_ok();
 
 		printf("\n[-] Obtaining data using WMI\n");
 		printf("[*] Starting WMI client ... ");
 		if (wmi_initialize(&services) != TRUE) {
 			print_failed();
-		}
-		else {
+		} else {
 			print_ok();
 
 			for (index = 0; wmitargets[index].caption != NULL; index++) {
 				wprintf(L"[*] Obtaining %s data ... ", wmitargets[index].caption);
 				if (wmi_execute_query(services, wmitargets[index].caption, wmitargets[index].classname,
-						wmitargets[index].properties) != TRUE) {
+					wmitargets[index].properties) != TRUE) {
 					print_failed();
-				}
-				else print_ok();
+				} else print_ok();
 			}
 
 			printf("[*] Cleanup WMI client ... \n");
@@ -76,7 +73,7 @@ int main(void)
 
 	getchar();
 
-	/* Restore Original Console Colors */
+	// Restore original console colours
 	restore_cmd_colors(original_colors);
 
 	return 0;

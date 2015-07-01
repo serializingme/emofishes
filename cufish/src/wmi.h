@@ -29,10 +29,22 @@ struct wmitarget {
 	wchar_t *properties[40];
 };
 
+/**
+ * Initialise the WMI client that will connect to the local machine WMI
+ * namespace. It will return TRUE if the connection was successful, FALSE
+ * otherwise.
+ */
 int wmi_initialize(IWbemServices **);
 
+/**
+ * Cleanup WMI.
+ */
 void wmi_cleanup(IWbemServices *);
 
+/**
+ * Create the WMI query based on the class name and the selected properties,
+ * execute the query and report for each instance its properties values. 
+ */
 int wmi_execute_query(IWbemServices *, wchar_t *, wchar_t *, wchar_t *[]);
 
 #endif

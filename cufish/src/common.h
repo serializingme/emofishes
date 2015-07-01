@@ -31,12 +31,27 @@ void print_ok();
 
 int init_socket();
 
+/**
+ * Write the log message into a file.
+ */
 void write_log(wchar_t *);
 
+/**
+ * Send the log message over the UDP socket. This function will convert the
+ * message from a wide character string to a multiple byte string making it
+ * easier to read when inspecting the network packet captures.
+ */
 void send_log(wchar_t *);
 
+/**
+ * Initialise the UDP socket used to send the information obtained from WMI.
+ * Return TRUE if everything works out, FALSE otherwise.
+ */
 int init_socket();
 
+/**
+ * Cleanup the UDP socket.
+ */
 void clean_socket();
 
 #endif
