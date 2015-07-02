@@ -15,8 +15,11 @@ All code is written in C and can be built with MinGW. To compile you will likely
 (If compiling in Windows systems)
 > make -f Makefile.win
 
-(If cross-compiling in Linux systems)
-$ make -f Makefile.linux
+(If cross-compiling in Linux systems for a 32 bits Windows)
+$ make -f Makefile.linux-32
+
+(If cross-compiling in Linux systems for a 64 bits Windows, not always available)
+$ make -f Makefile.linux-64
 ```
 
 ## Licensing
