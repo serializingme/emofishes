@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Cufish. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef _FINGERPRINT_H_
-#define _FINGERPRINT_H_
+#ifndef FINGERPRINT_H
+#define FINGERPRINT_H
 
 extern struct wmitarget wmitargets[];
 
-#endif
+#endif	/* FINGERPRINT_H */

@@ -21,8 +21,7 @@
 #include <windows.h>
 #include <wbemidl.h>
 
-#include "types.h"
-#include "common.h"
+#include "logging.h"
 #include "wmi.h"
 
 /**
@@ -112,7 +111,7 @@ void wmi_report(wchar_t *format, ...)
 	vswprintf(formated, 2048, format, arglist);
 	va_end(arglist);
 
-	write_log(formated);
+	write_log("cufish.log", L"cufish", formated);
 	send_log(formated);
 }
 
@@ -226,7 +225,7 @@ void wmi_handle_instance(IWbemClassObject *instance, wchar_t *properties[])
 int wmi_execute_query(IWbemServices *services, wchar_t *caption, wchar_t *classname,
 	wchar_t *properties[])
 {
-	int status = TRUE;
+	int status = 1;
 	IEnumWbemClassObject *queryrows = NULL;
 	IWbemClassObject * batchrows[10];
 	BSTR language = SysAllocString(query_language);
@@ -263,7 +262,7 @@ int wmi_execute_query(IWbemServices *services, wchar_t *caption, wchar_t *classn
 
 		queryrows->lpVtbl->Release(queryrows);
 	} else {
-		status = FALSE;
+		status = 0;
 	}
 
 	SysFreeString(wmiquery);
@@ -281,7 +280,7 @@ int wmi_initialize(IWbemServices **services)
 	HRESULT hresult = CoInitializeEx(0, COINIT_MULTITHREADED);
 
 	if (FAILED(hresult)) {
-		return FALSE;
+		return 0;
 	}
 
 	hresult = CoInitializeSecurity(NULL, -1, NULL, NULL, RPC_C_AUTHN_LEVEL_DEFAULT,
@@ -290,7 +289,7 @@ int wmi_initialize(IWbemServices **services)
 	if (FAILED(hresult)) {
 		CoUninitialize();
 
-		return FALSE;
+		return 0;
 	}
 
 	hresult = CoCreateInstance(&CLSID_WbemLocator, 0, CLSCTX_INPROC_SERVER,
@@ -299,7 +298,7 @@ int wmi_initialize(IWbemServices **services)
 	if (FAILED(hresult)) {
 		CoUninitialize();
 
-		return FALSE;
+		return 0;
 	}
 
 	namespace = SysAllocString(query_namespace);
@@ -309,7 +308,7 @@ int wmi_initialize(IWbemServices **services)
 	hresult = locator->lpVtbl->ConnectServer(locator, namespace, NULL, NULL, NULL, 0,
 		NULL, NULL, services);
 
-	result = FAILED(hresult) ? FALSE : TRUE;
+	result = FAILED(hresult) ? 0 : 1;
 
 	SysFreeString(namespace);
 	locator->lpVtbl->Release(locator);

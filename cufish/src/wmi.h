@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with Cufish. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef _WMI_H_
-#define _WMI_H_
+#ifndef WMI_H
+#define WMI_H
 
 /**
  * Structure that contains the name of the class to query and the respective
@@ -47,4 +47,4 @@ void wmi_cleanup(IWbemServices *);
  */
 int wmi_execute_query(IWbemServices *, wchar_t *, wchar_t *, wchar_t *[]);
 
-#endif
+#endif	/* WMI_H */

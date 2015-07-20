@@ -16,15 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Cufish. If not, see <http://www.gnu.org/licenses/>.
 #
-CC	= i686-w64-mingw32-gcc
-CPP	= i686-w64-mingw32-g++
-LINK	= i686-w64-mingw32-gcc
-WINDRES	= i686-w64-mingw32-windres
-OBJS	= build/obj/main.o build/obj/common.o build/obj/wmi.o \
-	build/obj/fingerprint.o build/obj/resources.res
-LIBS	= -lole32 -lwbemuuid -loleaut32 -lws2_32 -s
+CC	= gcc.exe
+LINK	= gcc.exe
+WINDRES	= windres.exe
+OBJS	= build/obj/main.o build/obj/wmi.o build/obj/fingerprint.o \
+        build/obj/resources.res
+LDFLAGS = -static -L../common/build
+LIBS	= -lcommon -lole32 -lwbemuuid -loleaut32 -lws2_32 -s
 BIN	= build/cufish.exe
-CFLAGS	= -Wall -Wextra
+CFLAGS	= -I../common/src -Wall -Wextra
 
 all: prepare $(BIN)
 
@@ -35,13 +35,10 @@ clean:
 	@rmdir /s /q build\obj
 
 $(BIN): $(OBJS)
-	$(LINK) $(OBJS) -o "$(BIN)" $(LIBS)
+	$(LINK) $(LDFLAGS) $(OBJS) -o "$(BIN)" $(LIBS)
 
 build/obj/%.o: src/%.c
 	$(CC) -c $< -o $@ $(CFLAGS)
-
-build/obj/%.o: src/%.cpp
-	$(CPP) -c $< -o $@ $(CFLAGS)
 
 build/obj/%.res: res/%.rc
 	$(WINDRES) $< --input-format=rc -o $@ -O coff

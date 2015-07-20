@@ -18,34 +18,35 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <windows.h>
 #include <wbemidl.h>
 
-#include "types.h"
-#include "common.h"
+#include "console.h"
+#include "logging.h"
 #include "wmi.h"
 #include "fingerprint.h"
 
 int main()
 {
-	unsigned short original_colors = 0;
+	uint16_t original_colors = 0;
 	IWbemServices *services = NULL;
 	int index = 0;
 
-	write_log(L"Start");
+	write_log("cufish.log", L"cufish", L"Start");
 
-	original_colors = init_cmd_colors();
-	print_header();
+	original_colors = init_cmd_attributes();
+	print_header(L"Cufish", L"Curious fish", L"Fingerprinting malware execution\nenvironments.", 10);
 
-	printf("[*] Initializing socket ... ");
-	if (init_socket() != TRUE) {
+	wprintf(L"[*] Initializing socket ... ");
+	if (init_socket() != 1) {
 		print_failed();
 	} else {
 		print_ok();
 
-		printf("\n[-] Obtaining data using WMI\n");
-		printf("[*] Starting WMI client ... ");
-		if (wmi_initialize(&services) != TRUE) {
+		wprintf(L"\n[-] Obtaining data using WMI\n");
+		wprintf(L"[*] Starting WMI client ... ");
+		if (wmi_initialize(&services) != 1) {
 			print_failed();
 		} else {
 			print_ok();
@@ -53,28 +54,27 @@ int main()
 			for (index = 0; wmitargets[index].caption != NULL; index++) {
 				wprintf(L"[*] Obtaining %s data ... ", wmitargets[index].caption);
 				if (wmi_execute_query(services, wmitargets[index].caption, wmitargets[index].classname,
-					wmitargets[index].properties) != TRUE) {
+					wmitargets[index].properties) != 1) {
 					print_failed();
 				} else print_ok();
 			}
 
-			printf("[*] Cleanup WMI client ... \n");
+			wprintf(L"[*] Cleanup WMI client ... \n");
 			wmi_cleanup(services);
 		}
 
-		printf("\n[*] Cleanup socket ...\n");
+		wprintf(L"\n[*] Cleanup socket ...\n");
 		clean_socket();
 	}
 
-	printf("\n\n");
-	printf("[-] Feel free to RE me, check log file for more information.");
+	wprintf(L"\n\n");
+	wprintf(L"[-] Feel free to RE me, check log file for more information.");
 
-	write_log(L"End");
+	write_log("cufish.log", L"cufish", L"End");
 
 	getchar();
 
-	// Restore original console colours
-	restore_cmd_colors(original_colors);
+	restore_cmd_attributes(original_colors);
 
 	return 0;
 }
