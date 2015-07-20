@@ -1,0 +1,37 @@
+#
+# Copyright (C) 2015 Duarte Silva
+#
+# This file is part of Cufish.
+#
+# Cufish is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Cufish is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with Cufish. If not, see <http://www.gnu.org/licenses/>.
+#
+CC	= i686-w64-mingw32-gcc
+AR	= i686-w64-mingw32-ar
+OBJS	= build/obj/console.o build/obj/logging.o
+BIN	= build/libcommon.a
+CFLAGS	= -Wall -Wextra
+
+all: prepare $(BIN)
+
+prepare:
+	@mkdir -p build/obj
+
+clean:
+	@rm -rf build
+
+$(BIN): $(OBJS)
+	$(AR) rcs $(BIN) $(OBJS)
+
+build/obj/%.o: src/%.c
+	$(CC) -c $< -o $@ $(CFLAGS)
