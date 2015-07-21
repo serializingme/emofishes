@@ -40,7 +40,7 @@ extern "C" {
 	 * Send the log message over the UDP socket. This function will convert
 	 * the message from a wide character string to a multiple byte string
 	 * and call it's ANSI counterpart.
-	 * @param message
+	 * @param message the message to send
 	 */
 	void send_log(const wchar_t *message);
 
@@ -48,28 +48,37 @@ extern "C" {
 	 * Send the log message over the UDP socket. This function will send the
 	 * message encoded in ANSI to make it easier to read while inspecting
 	 * the network packet capture.
-	 * @param message
+	 * @param message the message to send
 	 */
 	void send_loga(const char *message);
-	
+
 	/**
 	 * Cleanup the UDP socket.
 	 */
 	void clean_socket();
 
 	/**
-	 * Write a log message into a file. The file will be opened (in append
-	 * mode) and closed every time a message is to be written.
-	 * @param filename the file to write the log message to
+	 * Open the application log file. The file will be opened (in append
+	 * mode).
+	 * @param filename the file name for the log file
+	 * @return 0 if opening the file failed, 1 otherwise
+	 */
+	int open_log(const char *filename);
+
+	/**
+	 * Write a log message into the opened file.
 	 * @param tag log entry tag
 	 * @param message the message to be written
 	 */
-	void write_log(const char *filename, const wchar_t *tag,
-		const wchar_t *message);
+	void write_log(const wchar_t *tag, const wchar_t *message);
+
+	/**
+	 * Cleanup the UDP socket.
+	 */
+	void close_log();
 
 #ifdef	__cplusplus
 }
 #endif
 
 #endif	/* LOGGING_H */
-

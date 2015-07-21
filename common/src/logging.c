@@ -41,6 +41,10 @@ SOCKET client_socket = INVALID_SOCKET;
  * Socket address to send the logs to.
  */
 struct sockaddr_in socket_addr;
+/**
+ * File descriptor.
+ */
+FILE *log_file = NULL;
 
 int init_socket()
 {
@@ -80,6 +84,7 @@ void send_log(const wchar_t *message)
 
 void send_loga(const char *message)
 {
+	// Make sure there is space for the line feed and the null character
 	size_t length = strlen(message) + 2;
 
 	// Get a nice zero filled string.
@@ -103,15 +108,25 @@ void clean_socket()
 	WSACleanup();
 }
 
-void write_log(const char *filename, const wchar_t *tag,
-	const wchar_t *message)
+int open_log(const char *filename)
 {
-	FILE *log = fopen(filename, "a");
+	return((log_file = fopen(filename, "a")) != NULL) ? 1 : 0;
+}
 
-	if (log == NULL) {
+void write_log(const wchar_t *tag, const wchar_t *message)
+{
+	if (log_file == NULL) {
 		return;
 	}
 
-	fwprintf(log, L"[%s] %s\n", tag, message);
-	fclose(log);
+	fwprintf(log_file, L"[%s] %s\n", tag, message);
+}
+
+void close_log()
+{
+	if (log_file != NULL) {
+		fclose(log_file);
+	}
+
+	log_file = NULL;
 }

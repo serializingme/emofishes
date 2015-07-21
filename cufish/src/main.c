@@ -33,10 +33,15 @@ int main()
 	IWbemServices *services = NULL;
 	int index = 0;
 
-	write_log("cufish.log", L"cufish", L"Start");
-
 	original_colors = init_cmd_attributes();
 	print_header(L"Cufish", L"Curious fish", L"Fingerprinting malware execution\nenvironments.", 10);
+
+	wprintf(L"[*] Initializing log file ... ");
+	if (open_log("cufish.log") != 1) {
+		print_failed();
+	} else print_ok();
+
+	write_log(L"cufish", L"Start");
 
 	wprintf(L"[*] Initializing socket ... ");
 	if (init_socket() != 1) {
@@ -70,7 +75,8 @@ int main()
 	wprintf(L"\n\n");
 	wprintf(L"[-] Feel free to RE me, check log file for more information.");
 
-	write_log("cufish.log", L"cufish", L"End");
+	write_log(L"cufish", L"End");
+	close_log();
 
 	getchar();
 

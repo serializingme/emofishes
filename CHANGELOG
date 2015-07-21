@@ -1,3 +1,8 @@
+1.0.1 - 21/07/2015
+
+- New project for the common code between projects.
+- Logging file will no longer be opened and closed each time a message is logged.
+
 1.0.0 - 26/06/2015
 
 - Initial version.

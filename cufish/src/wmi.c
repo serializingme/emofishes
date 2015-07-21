@@ -111,7 +111,7 @@ void wmi_report(wchar_t *format, ...)
 	vswprintf(formated, 2048, format, arglist);
 	va_end(arglist);
 
-	write_log("cufish.log", L"cufish", formated);
+	write_log(L"cufish", formated);
 	send_log(formated);
 }
 
