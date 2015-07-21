@@ -18,7 +18,7 @@
 #
 CC	= gcc
 AR	= ar
-OBJS	= build/obj/console.o build/obj/logging.o
+OBJS	= build/obj/console.o build/obj/logging.o build/obj/wow64.o
 BIN	= build/libcommon.a
 CFLAGS	= -Wall -Wextra
 

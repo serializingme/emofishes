@@ -63,4 +63,3 @@ extern "C" {
 #endif
 
 #endif	/* CONSOLE_H */
-
