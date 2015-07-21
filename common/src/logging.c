@@ -72,7 +72,7 @@ void send_log(const wchar_t *message)
 	size_t length = wcslen(message) + 1;
 
 	// Get a nice zero filled string.
-	char *final = malloc(length * sizeof(char));
+	char *final = (char *) malloc(length * sizeof(char));
 	memset(final, 0, length * sizeof(char));
 
 	wcstombs(final, message, length);
@@ -88,7 +88,7 @@ void send_loga(const char *message)
 	size_t length = strlen(message) + 2;
 
 	// Get a nice zero filled string.
-	char *final = malloc(length * sizeof(char));
+	char *final = (char *) malloc(length * sizeof(char));
 	memset(final, 0, length * sizeof(char));
 
 	sprintf(final, "%s\n", message);
