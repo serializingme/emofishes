@@ -29,7 +29,7 @@ extern "C" {
 	 * invocation failed.
 	 * @return 1 if the process is Wow64, 0 otherwise
 	 */
-	int iswow64();
+	int is_wow64();
 
 	/**
 	 * Wrapper function for Wow64DisableWow64FsRedirection. The function
