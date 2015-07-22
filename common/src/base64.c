@@ -80,6 +80,11 @@ static const char encode_map[64] = {
 	'8', '9', '+', '/'
 };
 
+size_t base64_encode_len(size_t length)
+{
+	return((length + 2) / 3 * 4) + 1;
+}
+
 /**
  * Base64 encoder found originally in Apache HTTP server file "ap_base64.c".
  */
@@ -87,7 +92,7 @@ void base64_encode(char *encoded, const uint8_t *source, size_t length)
 {
 	size_t index;
 	char *current = encoded;
-
+	
 	for (index = 0; index < length - 2; index += 3) {
 		*current++ = encode_map[(source[index] >> 2) & 0x3F];
 		*current++ = encode_map[((source[index] & 0x3) << 4) |

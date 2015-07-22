@@ -93,7 +93,8 @@ void send_loga(const char *message)
 
 	sprintf(final, "%s\n", message);
 
-	sendto(client_socket, final, strlen(final) * sizeof(char), 0,
+	// While sending ignore the null character
+	sendto(client_socket, final, (length - 1) * sizeof(char), 0,
 		(SOCKADDR *) & socket_addr, sizeof(struct sockaddr_in));
 
 	free(final);

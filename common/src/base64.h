@@ -19,28 +19,25 @@
 #ifndef BASE64_H
 #define	BASE64_H
 
-/**
- * Calculate the length of the resulting string of encoding a source buffer so
- * that memory can be allocated correctly. Since the resulting encoded string
- * should be null terminated, this will return an extra character.
- * @param length the length of the buffer to be encoded
- * @return the resulting base64 encoded string length
- */
-inline size_t base64_encode_len(size_t length)
-{
-	return((length + 2) / 3 * 4) + 1;
-}
-
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 	/**
+	 * Calculate the length of the resulting string of encoding a source buffer so
+	 * that memory can be allocated correctly. Since the resulting encoded string
+	 * should be null terminated, this will return an extra character.
+	 * @param length the length of the buffer to be encoded
+	 * @return the resulting base64 encoded string length
+	 */
+	size_t base64_encode_len(size_t length);
+
+	/**
 	 * Encode the supplied buffer in base64.
-         * @param encoded string that will hold the result
-         * @param source the source of data to encode
-         * @param length the length of data to encode
-         */
+	 * @param encoded string that will hold the result
+	 * @param source the source of data to encode
+	 * @param length the length of data to encode
+	 */
 	void base64_encode(char *encoded, const uint8_t *source, size_t length);
 
 #ifdef	__cplusplus
