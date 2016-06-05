@@ -1,3 +1,13 @@
+1.0.2 - 05/06/2016
+
+- New project Nofish added
+- Changed the code formatting style
+- Added 64 bits makefile to Cufish
+- Added Wow64 related functions
+- Added explicit type conversion to memory allocations
+- Added Base64 encoding
+- Other small corrections and improvements
+
 1.0.1 - 21/07/2015
 
 - New project for the common code between projects.

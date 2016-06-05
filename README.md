@@ -1,7 +1,7 @@
 # Emofishes (Emotional Fishes)
 ## Introduction
 
-Emofishes is a collection of proof of concepts that help improve, bypass or detect virtualized execution environments (focusing on the ones setup for malware analysis). Part of the code in all of the tools is based on [Alberto Ortega](https://github.com/a0rtega/pafish) Pafish (Paranoid Fish) project.
+Emofishes is a collection of proof of concepts that help improve, bypass or detect virtualized execution environments (focusing on the ones setup for malware analysis). Part of the code in all of the tools and the naming of the projects are based on [Alberto Ortega](https://github.com/a0rtega/pafish) Pafish (Paranoid Fish) project.
 
 ### Common
 
@@ -11,9 +11,9 @@ A static link library that contain common code to all the tools. This library sh
 
 The environments used to perform behavioural analysis of malware need to be stealth, being able to avoid detection by malware is a must because it will spare the researcher or incident responder precious time in the analysis of the incident. Cufish aims to help with that, providing information about the execution environment that could be used pre-emptively to improve the sandbox and avoid detection by malware. You can [download](https://github.com/serializingme/emofishes/raw/master/dist/cufish.exe) the compiled executable.
 
-### Infish (Investigative Fish)
+### Nofish (Nosey Fish)
 
-Investigative Fish lists all directories and files of all the drives in a system. This as the objective of making it easier to inspect the file system contents of the environments used to perform behavioural analysis. You can [download](https://github.com/serializingme/emofishes/raw/master/dist/infish.exe) the compiled executable.
+Nosey Fish lists all directories and files of all the drives in a system. This as the objective of making it easier to inspect the file system contents of the environments used to perform behavioural analysis. You can [download](https://github.com/serializingme/emofishes/raw/master/dist/nofish.exe) the compiled executable.
 
 ## Build it Yourself
 
@@ -26,7 +26,7 @@ All code is written in C and can be built with MinGW. To compile you will likely
 (If cross-compiling in Linux systems for a 32 bits Windows)
 $ make -f Makefile.linux-32
 
-(If cross-compiling in Linux systems for a 64 bits Windows, not always available)
+(If cross-compiling in Linux systems for a 64 bits Windows)
 $ make -f Makefile.linux-64
 ```
 

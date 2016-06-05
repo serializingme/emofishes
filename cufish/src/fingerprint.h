@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -21,4 +21,4 @@
 
 extern struct wmitarget wmitargets[];
 
-#endif	/* FINGERPRINT_H */
+#endif /* FINGERPRINT_H */

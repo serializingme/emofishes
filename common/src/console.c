@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -21,46 +21,41 @@
 #include <wchar.h>
 #include <windows.h>
 
-uint16_t init_cmd_attributes()
-{
-	HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
+uint16_t init_cmd_attributes() {
+    HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	CONSOLE_SCREEN_BUFFER_INFO information;
-	GetConsoleScreenBufferInfo(handler, &information);
-	SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
+    CONSOLE_SCREEN_BUFFER_INFO information;
+    GetConsoleScreenBufferInfo(handler, &information);
+    SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
 
-	return information.wAttributes;
+    return information.wAttributes;
 }
 
-void restore_cmd_attributes(uint16_t original)
-{
-	HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(handler, original);
+void restore_cmd_attributes(uint16_t original) {
+    HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(handler, original);
 }
 
 void print_header(const wchar_t *title, const wchar_t *subtitle,
-	const wchar_t *description, uint16_t attributes)
-{
-	HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
-	wprintf(L"* %s (", title);
-	SetConsoleTextAttribute(handler, attributes);
-	wprintf(L"%s", subtitle);
-	SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
-	wprintf(L") *\n\n%s\n\n", description);
+        const wchar_t *description, uint16_t attributes) {
+    HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
+    wprintf(L"* %s (", title);
+    SetConsoleTextAttribute(handler, attributes);
+    wprintf(L"%s", subtitle);
+    SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
+    wprintf(L") *\n\n%s\n\n", description);
 }
 
-void print_ok()
-{
-	HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(handler, 10);
-	wprintf(L"OK\n");
-	SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
+void print_ok() {
+    HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(handler, 10);
+    wprintf(L"OK\n");
+    SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
 }
 
-void print_failed()
-{
-	HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(handler, 207);
-	wprintf(L"failed!\n");
-	SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
+void print_failed() {
+    HANDLE handler = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(handler, 207);
+    wprintf(L"failed!\n");
+    SetConsoleTextAttribute(handler, FOREGROUND_INTENSITY);
 }

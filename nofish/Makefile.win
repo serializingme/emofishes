@@ -1,29 +1,29 @@
 #
-# Copyright (C) 2015 Duarte Silva
+# Copyright (C) 2016 Duarte Silva
 #
-# This file is part of Infish.
+# This file is part of Emofishes.
 #
-# Infish is free software: you can redistribute it and/or modify
+# Emofishes is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Infish is distributed in the hope that it will be useful,
+# Emofishes is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU General Public License
-# along with Infish. If not, see <http://www.gnu.org/licenses/>.
+# along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
 #
-CC	= gcc.exe
-LINK	= gcc.exe
-WINDRES	= windres.exe
-OBJS	= build/obj/main.o build/obj/resources.res
-LDFLAGS	= -static -L../common/build
-LIBS	= -lcommon -lws2_32 -lshlwapi -s
-BIN	= build/infish.exe
-CFLAGS	= -I../common/src -Wall -Wextra
+CC = gcc.exe
+LINK = gcc.exe
+WINDRES = windres.exe
+OBJS = build/obj/main.o build/obj/resources.res
+LDFLAGS = -static -L../common/build
+LIBS = -lcommon -lws2_32 -lshlwapi -s
+BIN = build/nofish.exe
+CFLAGS = -I../common/src -Wall -Wextra
 
 all: prepare $(BIN)
 

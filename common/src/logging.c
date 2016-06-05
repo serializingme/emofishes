@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -46,88 +46,81 @@ struct sockaddr_in socket_addr;
  */
 FILE *log_file = NULL;
 
-int init_socket()
-{
-	WSADATA data;
-	memset(&data, 0, sizeof(WSADATA));
+int init_socket() {
+    WSADATA data;
+    memset(&data, 0, sizeof (WSADATA));
 
-	if (WSAStartup(MAKEWORD(2, 2), &data) != NO_ERROR) {
-		return 0;
-	}
+    if (WSAStartup(MAKEWORD(2, 2), &data) != NO_ERROR) {
+        return 0;
+    }
 
-	if ((client_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == INVALID_SOCKET) {
-		WSACleanup();
-		return 0;
-	}
+    if ((client_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == INVALID_SOCKET) {
+        WSACleanup();
+        return 0;
+    }
 
-	socket_addr.sin_family = AF_INET;
-	socket_addr.sin_port = htons(server_port);
-	socket_addr.sin_addr.s_addr = inet_addr(server_addr);
+    socket_addr.sin_family = AF_INET;
+    socket_addr.sin_port = htons(server_port);
+    socket_addr.sin_addr.s_addr = inet_addr(server_addr);
 
-	return 1;
+    return 1;
 }
 
-void send_log(const wchar_t *message)
-{
-	size_t length = wcslen(message) + 1;
+void send_log(const wchar_t *message) {
+    size_t length = wcslen(message) + 1;
 
-	// Get a nice zero filled string.
-	char *final = (char *) malloc(length * sizeof(char));
-	memset(final, 0, length * sizeof(char));
+    // Get a nice zero filled string.
+    char *final = (char *) malloc(length * sizeof (char));
+    memset(final, 0, length * sizeof (char));
 
-	wcstombs(final, message, length);
+    wcstombs(final, message, length);
 
-	send_loga(final);
+    send_loga(final);
 
-	free(final);
+    free(final);
 }
 
-void send_loga(const char *message)
-{
-	// Make sure there is space for the line feed and the null character
-	size_t length = strlen(message) + 2;
+void send_loga(const char *message) {
+    // Make sure there is space for the line feed and the null character
+    size_t length = strlen(message) + 2;
 
-	// Get a nice zero filled string.
-	char *final = (char *) malloc(length * sizeof(char));
-	memset(final, 0, length * sizeof(char));
+    // Get a nice zero filled string.
+    char *final = (char *) malloc(length * sizeof (char));
+    memset(final, 0, length * sizeof (char));
 
-	sprintf(final, "%s\n", message);
+    sprintf(final, "%s\n", message);
 
-	// While sending ignore the null character
-	sendto(client_socket, final, (length - 1) * sizeof(char), 0,
-		(SOCKADDR *) & socket_addr, sizeof(struct sockaddr_in));
+    // While sending ignore the null character
+    sendto(client_socket, final, (length - 1) * sizeof (char), 0,
+            (SOCKADDR *) & socket_addr, sizeof (struct sockaddr_in));
 
-	free(final);
+    free(final);
 }
 
-void clean_socket()
-{
-	if (client_socket == INVALID_SOCKET) {
-		closesocket(client_socket);
-	}
+void clean_socket() {
+    if (client_socket == INVALID_SOCKET) {
+        closesocket(client_socket);
+    }
 
-	WSACleanup();
+    WSACleanup();
 }
 
-int open_log(const char *filename)
-{
-	return((log_file = fopen(filename, "a")) != NULL) ? 1 : 0;
+int open_log(const char *filename) {
+    return ((log_file = fopen(filename, "a")) != NULL) ? 1 : 0;
 }
 
-void write_log(const wchar_t *tag, const wchar_t *message)
-{
-	if (log_file == NULL) {
-		return;
-	}
+void write_log(const wchar_t *tag, const wchar_t *message) {
+    if (log_file == NULL) {
+        return;
+    }
 
-	fwprintf(log_file, L"[%s] %s\n", tag, message);
+    fwprintf(log_file, L"[%s] %s\n", tag, message);
 }
 
-void close_log()
-{
-	if (log_file != NULL) {
-		fclose(log_file);
-	}
+void close_log() {
+    if (log_file != NULL) {
+        fclose(log_file);
+    }
 
-	log_file = NULL;
+    log_file = NULL;
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -17,31 +17,31 @@
  * along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef BASE64_H
-#define	BASE64_H
+#define BASE64_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
-	/**
-	 * Calculate the length of the resulting string of encoding a source buffer so
-	 * that memory can be allocated correctly. Since the resulting encoded string
-	 * should be null terminated, this will return an extra character.
-	 * @param length the length of the buffer to be encoded
-	 * @return the resulting base64 encoded string length
-	 */
-	size_t base64_encode_len(size_t length);
+    /**
+     * Calculate the length of the resulting string of encoding a source buffer so
+     * that memory can be allocated correctly. Since the resulting encoded string
+     * should be null terminated, this will return an extra character.
+     * @param length the length of the buffer to be encoded
+     * @return the resulting base64 encoded string length
+     */
+    size_t base64_encode_len(size_t length);
 
-	/**
-	 * Encode the supplied buffer in base64.
-	 * @param encoded string that will hold the result
-	 * @param source the source of data to encode
-	 * @param length the length of data to encode
-	 */
-	void base64_encode(char *encoded, const uint8_t *source, size_t length);
+    /**
+     * Encode the supplied buffer in base64.
+     * @param encoded string that will hold the result
+     * @param source the source of data to encode
+     * @param length the length of data to encode
+     */
+    void base64_encode(char *encoded, const uint8_t *source, size_t length);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* BASE64_H */
+#endif /* BASE64_H */

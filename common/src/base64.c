@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -71,18 +71,18 @@
  * Base64 character encoding mappings.
  */
 static const char encode_map[64] = {
-	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-	'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-	'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
-	'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-	'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
-	'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7',
-	'8', '9', '+', '/'
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+    'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+    'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+    'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+    'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7',
+    '8', '9', '+', '/'
 };
 
 size_t base64_encode_len(size_t length)
 {
-	return((length + 2) / 3 * 4) + 1;
+    return((length + 2) / 3 * 4) + 1;
 }
 
 /**
@@ -90,29 +90,29 @@ size_t base64_encode_len(size_t length)
  */
 void base64_encode(char *encoded, const uint8_t *source, size_t length)
 {
-	size_t index;
-	char *current = encoded;
-	
-	for (index = 0; index < length - 2; index += 3) {
-		*current++ = encode_map[(source[index] >> 2) & 0x3F];
-		*current++ = encode_map[((source[index] & 0x3) << 4) |
-			((int) (source[index + 1] & 0xF0) >> 4)];
-		*current++ = encode_map[((source[index + 1] & 0xF) << 2) |
-			((int) (source[index + 2] & 0xC0) >> 6)];
-		*current++ = encode_map[source[index + 2] & 0x3F];
-	}
-	if (index < length) {
-		*current++ = encode_map[(source[index] >> 2) & 0x3F];
-		if (index == (length - 1)) {
-			*current++ = encode_map[((source[index] & 0x3) << 4)];
-			*current++ = '=';
-		} else {
-			*current++ = encode_map[((source[index] & 0x3) << 4) |
-				((int) (source[index + 1] & 0xF0) >> 4)];
-			*current++ = encode_map[((source[index + 1] & 0xF) << 2)];
-		}
-		*current++ = '=';
-	}
+    size_t index;
+    char *current = encoded;
 
-	*current++ = '\0';
+    for (index = 0; index < length - 2; index += 3) {
+        *current++ = encode_map[(source[index] >> 2) & 0x3F];
+        *current++ = encode_map[((source[index] & 0x3) << 4) |
+                ((int) (source[index + 1] & 0xF0) >> 4)];
+        *current++ = encode_map[((source[index + 1] & 0xF) << 2) |
+                ((int) (source[index + 2] & 0xC0) >> 6)];
+        *current++ = encode_map[source[index + 2] & 0x3F];
+    }
+    if (index < length) {
+        *current++ = encode_map[(source[index] >> 2) & 0x3F];
+        if (index == (length - 1)) {
+            *current++ = encode_map[((source[index] & 0x3) << 4)];
+            *current++ = '=';
+        } else {
+            *current++ = encode_map[((source[index] & 0x3) << 4) |
+                    ((int) (source[index + 1] & 0xF0) >> 4)];
+            *current++ = encode_map[((source[index + 1] & 0xF) << 2)];
+        }
+        *current++ = '=';
+    }
+
+    *current++ = '\0';
 }

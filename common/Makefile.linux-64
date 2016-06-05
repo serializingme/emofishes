@@ -16,12 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
 #
-CC	= x86_64-w64-mingw32-gcc
-AR	= x86_64-w64-mingw32-ar
-OBJS	= build/obj/console.o build/obj/logging.o build/obj/wow64.o \
-        build/obj/base64.o
-BIN	= build/libcommon.a
-CFLAGS	= -Wall -Wextra
+CC = x86_64-w64-mingw32-gcc
+AR = x86_64-w64-mingw32-ar
+OBJS = build/obj/console.o build/obj/logging.o build/obj/wow64.o build/obj/base64.o
+BIN = build/libcommon.a
+CFLAGS = -Wall -Wextra
 
 all: prepare $(BIN)
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -28,28 +28,25 @@ typedef BOOL(WINAPI *IsWow64ProcessProto) (HANDLE, BOOL*);
 typedef BOOL(WINAPI *DisableWow64FsRedirectionProto) (void**);
 typedef BOOL(WINAPI *RevertWow64FsRedirectionProto) (void*);
 
-int is_wow64()
-{
-	IsWow64ProcessProto fniswow = (IsWow64ProcessProto) GetProcAddress(
-		GetModuleHandleA("kernel32"), "IsWow64Process");
+int is_wow64() {
+    IsWow64ProcessProto fniswow = (IsWow64ProcessProto) GetProcAddress(
+            GetModuleHandleA("kernel32"), "IsWow64Process");
 
-	int result = 0;
-	return(fniswow != NULL) &&
-		(fniswow(GetCurrentProcess(), &result) != FALSE) ? result : 0;
+    int result = 0;
+    return (fniswow != NULL) &&
+            (fniswow(GetCurrentProcess(), &result) != FALSE) ? result : 0;
 }
 
-int disable_wow64_fs_redirection(void **old)
-{
-	DisableWow64FsRedirectionProto fndisable = (DisableWow64FsRedirectionProto)
-		GetProcAddress(GetModuleHandleA("kernel32"), "Wow64DisableWow64FsRedirection");
+int disable_wow64_fs_redirection(void **old) {
+    DisableWow64FsRedirectionProto fndisable = (DisableWow64FsRedirectionProto)
+            GetProcAddress(GetModuleHandleA("kernel32"), "Wow64DisableWow64FsRedirection");
 
-	return(fndisable != NULL) && (fndisable(old) != FALSE) ? 1 : 0;
+    return (fndisable != NULL) && (fndisable(old) != FALSE) ? 1 : 0;
 }
 
-int revert_wow64_fs_redirection(void *old)
-{
-	RevertWow64FsRedirectionProto fnrevert = (RevertWow64FsRedirectionProto)
-		GetProcAddress(GetModuleHandleA("kernel32"), "Wow64RevertWow64FsRedirection");
+int revert_wow64_fs_redirection(void *old) {
+    RevertWow64FsRedirectionProto fnrevert = (RevertWow64FsRedirectionProto)
+            GetProcAddress(GetModuleHandleA("kernel32"), "Wow64RevertWow64FsRedirection");
 
-	return(fnrevert != NULL) && (fnrevert(old) != FALSE) ? 1 : 0;
+    return (fnrevert != NULL) && (fnrevert(old) != FALSE) ? 1 : 0;
 }

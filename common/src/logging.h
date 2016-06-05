@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -17,68 +17,68 @@
  * along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef LOGGING_H
-#define	LOGGING_H
+#define LOGGING_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
-	/**
-	 * Initialise the socket used to send logs over UDP (raw string in ANSI
-	 * encoding sent over the network). By default, this will setup the
-	 * socket with a destination IP of 192.168.1.1 on port 9876. This needs
-	 * to be called before using the send functions. The objective is to
-	 * create network traffic that contain the log messages since many if
-	 * not all malware sand boxes do not allow the download of created
-	 * files but it is usually allowed the download of the network packet
-	 * captures.
-	 * @return 0 in case of failure, 1 otherwise
-	 */
-	int init_socket();
+    /**
+     * Initialise the socket used to send logs over UDP (raw string in ANSI
+     * encoding sent over the network). By default, this will setup the
+     * socket with a destination IP of 192.168.1.1 on port 9876. This needs
+     * to be called before using the send functions. The objective is to
+     * create network traffic that contain the log messages since many if
+     * not all malware sand boxes do not allow the download of created
+     * files but it is usually allowed the download of the network packet
+     * captures.
+     * @return 0 in case of failure, 1 otherwise
+     */
+    int init_socket();
 
-	/**
-	 * Send the log message over the UDP socket. This function will convert
-	 * the message from a wide character string to a multiple byte string
-	 * and call it's ANSI counterpart.
-	 * @param message the message to send
-	 */
-	void send_log(const wchar_t *message);
+    /**
+     * Send the log message over the UDP socket. This function will convert
+     * the message from a wide character string to a multiple byte string
+     * and call it's ANSI counterpart.
+     * @param message the message to send
+     */
+    void send_log(const wchar_t *message);
 
-	/**
-	 * Send the log message over the UDP socket. This function will send the
-	 * message encoded in ANSI to make it easier to read while inspecting
-	 * the network packet capture.
-	 * @param message the message to send
-	 */
-	void send_loga(const char *message);
+    /**
+     * Send the log message over the UDP socket. This function will send the
+     * message encoded in ANSI to make it easier to read while inspecting
+     * the network packet capture.
+     * @param message the message to send
+     */
+    void send_loga(const char *message);
 
-	/**
-	 * Cleanup the UDP socket.
-	 */
-	void clean_socket();
+    /**
+     * Cleanup the UDP socket.
+     */
+    void clean_socket();
 
-	/**
-	 * Open the application log file. The file will be opened (in append
-	 * mode).
-	 * @param filename the file name for the log file
-	 * @return 0 if opening the file failed, 1 otherwise
-	 */
-	int open_log(const char *filename);
+    /**
+     * Open the application log file. The file will be opened (in append
+     * mode).
+     * @param filename the file name for the log file
+     * @return 0 if opening the file failed, 1 otherwise
+     */
+    int open_log(const char *filename);
 
-	/**
-	 * Write a log message into the opened file.
-	 * @param tag log entry tag
-	 * @param message the message to be written
-	 */
-	void write_log(const wchar_t *tag, const wchar_t *message);
+    /**
+     * Write a log message into the opened file.
+     * @param tag log entry tag
+     * @param message the message to be written
+     */
+    void write_log(const wchar_t *tag, const wchar_t *message);
 
-	/**
-	 * Cleanup the UDP socket.
-	 */
-	void close_log();
+    /**
+     * Cleanup the UDP socket.
+     */
+    void close_log();
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* LOGGING_H */
+#endif /* LOGGING_H */

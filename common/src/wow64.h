@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -17,41 +17,41 @@
  * along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef WOW64_H
-#define	WOW64_H
+#define WOW64_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
-	/**
-	 * Wrapper function for IsWow64Process. The function returns 1 if the
-	 * current process is running under Wow64, 0 otherwise or if the
-	 * invocation failed.
-	 * @return 1 if the process is Wow64, 0 otherwise
-	 */
-	int is_wow64();
+    /**
+     * Wrapper function for IsWow64Process. The function returns 1 if the
+     * current process is running under Wow64, 0 otherwise or if the
+     * invocation failed.
+     * @return 1 if the process is Wow64, 0 otherwise
+     */
+    int is_wow64();
 
-	/**
-	 * Wrapper function for Wow64DisableWow64FsRedirection. The function
-	 * returns 0 if the Wow64DisableWow64FsRedirection is not found or the
-	 * invocation failed. The old value is returned in the argument old.
-	 * @param old old status of the file system redirection to store
-	 * @return 0 if failed, 1 otherwise
-	 */
-	int disable_wow64_fs_redirection(void **old);
+    /**
+     * Wrapper function for Wow64DisableWow64FsRedirection. The function
+     * returns 0 if the Wow64DisableWow64FsRedirection is not found or the
+     * invocation failed. The old value is returned in the argument old.
+     * @param old old status of the file system redirection to store
+     * @return 0 if failed, 1 otherwise
+     */
+    int disable_wow64_fs_redirection(void **old);
 
-	/**
-	 * Wrapper function for Wow64RevertWow64FsRedirection. The function
-	 * returns 0 if the Wow64RevertWow64FsRedirection is not found or the
-	 * invocation failed. The old value is to be provided using the
-	 * argument old.
-	 * @param old the old status of the file system redirection to restore
-	 * @return 0 if failed, 1 otherwise
-	 */
-	int revert_wow64_fs_redirection(void *old);
+    /**
+     * Wrapper function for Wow64RevertWow64FsRedirection. The function
+     * returns 0 if the Wow64RevertWow64FsRedirection is not found or the
+     * invocation failed. The old value is to be provided using the
+     * argument old.
+     * @param old the old status of the file system redirection to restore
+     * @return 0 if failed, 1 otherwise
+     */
+    int revert_wow64_fs_redirection(void *old);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* WOW64_H */
+#endif /* WOW64_H */

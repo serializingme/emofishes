@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -24,9 +24,9 @@
  * properties. Note that the maximum number of properties is forty.
  */
 struct wmitarget {
-	wchar_t *caption;
-	wchar_t *classname;
-	wchar_t *properties[40];
+    wchar_t *caption;
+    wchar_t *classname;
+    wchar_t *properties[40];
 };
 
 /**
@@ -47,4 +47,4 @@ void wmi_cleanup(IWbemServices *);
  */
 int wmi_execute_query(IWbemServices *, wchar_t *, wchar_t *, wchar_t *[]);
 
-#endif	/* WMI_H */
+#endif /* WMI_H */

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Duarte Silva
+ * Copyright (C) 2016 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -27,60 +27,59 @@
 #include "wmi.h"
 #include "fingerprint.h"
 
-int main()
-{
-	uint16_t original_colors = 0;
-	IWbemServices *services = NULL;
-	int index = 0;
+int main() {
+    uint16_t original_colors = 0;
+    IWbemServices *services = NULL;
+    int index = 0;
 
-	original_colors = init_cmd_attributes();
-	print_header(L"Cufish", L"Curious fish", L"Fingerprinting malware execution\nenvironments.", 10);
+    original_colors = init_cmd_attributes();
+    print_header(L"Cufish", L"Curious fish", L"Fingerprinting malware execution\nenvironments.", 10);
 
-	wprintf(L"[*] Initializing log file ... ");
-	if (open_log("cufish.log") != 1) {
-		print_failed();
-	} else print_ok();
+    wprintf(L"[*] Initializing log file ... ");
+    if (open_log("cufish.log") != 1) {
+        print_failed();
+    } else print_ok();
 
-	write_log(L"cufish", L"Start");
+    write_log(L"cufish", L"Start");
 
-	wprintf(L"[*] Initializing socket ... ");
-	if (init_socket() != 1) {
-		print_failed();
-	} else {
-		print_ok();
+    wprintf(L"[*] Initializing socket ... ");
+    if (init_socket() != 1) {
+        print_failed();
+    } else {
+        print_ok();
 
-		wprintf(L"\n[-] Obtaining data using WMI\n");
-		wprintf(L"[*] Starting WMI client ... ");
-		if (wmi_initialize(&services) != 1) {
-			print_failed();
-		} else {
-			print_ok();
+        wprintf(L"\n[-] Obtaining data using WMI\n");
+        wprintf(L"[*] Starting WMI client ... ");
+        if (wmi_initialize(&services) != 1) {
+            print_failed();
+        } else {
+            print_ok();
 
-			for (index = 0; wmitargets[index].caption != NULL; index++) {
-				wprintf(L"[*] Obtaining %s data ... ", wmitargets[index].caption);
-				if (wmi_execute_query(services, wmitargets[index].caption, wmitargets[index].classname,
-					wmitargets[index].properties) != 1) {
-					print_failed();
-				} else print_ok();
-			}
+            for (index = 0; wmitargets[index].caption != NULL; index++) {
+                wprintf(L"[*] Obtaining %s data ... ", wmitargets[index].caption);
+                if (wmi_execute_query(services, wmitargets[index].caption, wmitargets[index].classname,
+                        wmitargets[index].properties) != 1) {
+                    print_failed();
+                } else print_ok();
+            }
 
-			wprintf(L"[*] Cleanup WMI client ... \n");
-			wmi_cleanup(services);
-		}
+            wprintf(L"[*] Cleanup WMI client ... \n");
+            wmi_cleanup(services);
+        }
 
-		wprintf(L"\n[*] Cleanup socket ...\n");
-		clean_socket();
-	}
+        wprintf(L"\n[*] Cleanup socket ...\n");
+        clean_socket();
+    }
 
-	wprintf(L"\n\n");
-	wprintf(L"[-] Feel free to RE me, check log file for more information.");
+    wprintf(L"\n\n");
+    wprintf(L"[-] Feel free to RE me, check log file for more information.");
 
-	write_log(L"cufish", L"End");
-	close_log();
+    write_log(L"cufish", L"End");
+    close_log();
 
-	getchar();
+    getchar();
 
-	restore_cmd_attributes(original_colors);
+    restore_cmd_attributes(original_colors);
 
-	return 0;
+    return 0;
 }
