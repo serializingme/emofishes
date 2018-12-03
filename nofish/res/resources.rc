@@ -13,14 +13,14 @@ BEGIN
         BLOCK "040904E4"
         BEGIN
             VALUE "CompanyName", "SerializingMe"
-            VALUE "FileVersion", "1.0.2"
+            VALUE "FileVersion", "1.0.3"
             VALUE "FileDescription", "Nosey Fish is nosey"
             VALUE "InternalName", "Nosey Fish"
             VALUE "LegalCopyright", ""
             VALUE "LegalTrademarks", ""
             VALUE "OriginalFilename", "nofish.exe"
             VALUE "ProductName", "Nosey Fish"
-            VALUE "ProductVersion", "1.0.2"
+            VALUE "ProductVersion", "1.0.3"
         END
     END
     BLOCK "VarFileInfo"
@@ -28,4 +28,3 @@ BEGIN
         VALUE "Translation", 0x0409, 1252
     END
 END
-

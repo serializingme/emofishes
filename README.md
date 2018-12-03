@@ -15,6 +15,10 @@ The environments used to perform behavioural analysis of malware need to be stea
 
 Nosey Fish lists all directories and files of all the drives in a system. This as the objective of making it easier to inspect the file system contents of the environments used to perform behavioural analysis. You can [download](https://github.com/serializingme/emofishes/raw/master/dist/nofish.exe) the compiled executable.
 
+### Exfish (Extrovert Fish)
+
+Extrovert Fish exfiltrates over the network the FireEye MPS file system filter driver used to monitor activity inside the sandbox environment. The driver is sent in Base64 encoded chuncks over a UDP socket.
+
 ## Build it Yourself
 
 All code is written in C and can be built with MinGW. To compile you will likely need to use:

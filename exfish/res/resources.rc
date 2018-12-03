@@ -18,7 +18,7 @@
  */
 #include <windows.h>
 
-A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "cufish.ico"
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "exfish.ico"
 
 1 VERSIONINFO
 FILEVERSION 0,5,2,1
@@ -31,12 +31,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "SerializingMe"
             VALUE "FileVersion", "1.0.3"
-            VALUE "FileDescription", "Curious Fish is curious"
-            VALUE "InternalName", "Curious Fish"
+            VALUE "FileDescription", "Extrovert Fish is extrovert"
+            VALUE "InternalName", "Extrovert Fish"
             VALUE "LegalCopyright", ""
             VALUE "LegalTrademarks", ""
-            VALUE "OriginalFilename", "cufish.exe"
-            VALUE "ProductName", "Curious Fish"
+            VALUE "OriginalFilename", "exfish.exe"
+            VALUE "ProductName", "Extrovert Fish"
             VALUE "ProductVersion", "1.0.3"
         END
     END
