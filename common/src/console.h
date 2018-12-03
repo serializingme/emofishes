@@ -1,10 +1,10 @@
 /**
- * Copyright (C) 2016 Duarte Silva
+ * Copyright (C) 2019 Duarte Silva
  *
  * This file is part of Emofishes.
  *
- * Emofishes is a collection of free software: you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as published by
+ * Emofishes is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -39,9 +39,9 @@ extern "C" {
     /**
      * Print a formated header.
      * @param title the application title
-     * @param subtitle the subtitle 
+     * @param subtitle the subtitle
      * @param description the application description
-     * @param attributes for the subtitle part of the header 
+     * @param attributes for the subtitle part of the header
      */
     void print_header(const wchar_t *title, const wchar_t *subtitle,
             const wchar_t *description, uint16_t attributes);

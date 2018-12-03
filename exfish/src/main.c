@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Duarte Silva
+ * Copyright (C) 2019 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Infish. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -44,12 +44,12 @@ void send_file(const char *filename)
 	}
 
 	uint8_t buffer[256];
-	
+
 	// No need to use base64_encode_len and dynamic memory allocation since
 	// the read chunks will have a maximum size of 256 bytes.
 	char encoded[345];
 	size_t read;
-	
+
 	do {
 		read = fread(buffer, 1, 256, file);
 		if (read > 0) {
@@ -60,7 +60,7 @@ void send_file(const char *filename)
 	} while(read > 0);
 
 	fclose(file);
-	
+
 	print_ok();
 }
 
@@ -99,4 +99,3 @@ int main()
 
 	return 0;
 }
-

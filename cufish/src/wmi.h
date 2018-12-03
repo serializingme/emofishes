@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Duarte Silva
+ * Copyright (C) 2019 Duarte Silva
  *
  * This file is part of Emofishes.
  *
@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Emofishes. If not, see <http://www.gnu.org/licenses/>.
  */
@@ -43,7 +43,7 @@ void wmi_cleanup(IWbemServices *);
 
 /**
  * Create the WMI query based on the class name and the selected properties,
- * execute the query and report for each instance its properties values. 
+ * execute the query and report for each instance its properties values.
  */
 int wmi_execute_query(IWbemServices *, wchar_t *, wchar_t *, wchar_t *[]);
 
